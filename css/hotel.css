@@ -156,3 +156,7 @@
   .line-cta__lead { font-size: 1.8rem; margin-bottom: 14px; }
   .line-cta .line-btn { max-width: 380px; }
 }
+
+/* width/height 属性を付けた画像の縦横比を保つ（アドバイザー・木のイラストが縦に伸びないように） */
+.advice__img img, .hayashi img, .popup-area img { height: auto; }
+.advice__img { display: flex; align-items: flex-end; }
