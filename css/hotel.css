@@ -146,3 +146,13 @@
 /* ===== サンクスページ ===== */
 .thanks__container p { margin-bottom: 14px; }
 .thanks__container .prevbtn { display: block; text-align: center; }
+
+/* 常設のLINE相談ボタン（「理想の働き方を実現」の登録ボタンの下） */
+.line-cta { max-width: 335px; margin: 22px auto 0; padding: 16px 14px 18px; background: #fff; border: 1.5px dashed rgba(6, 199, 85, .45); border-radius: 16px; text-align: center; }
+.line-cta__lead { font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.5; }
+.line-cta .line-btn { max-width: 300px; margin: 0 auto; }
+@media screen and (min-width: 768px) {
+  .line-cta { max-width: 480px; margin-top: 30px; padding: 22px 24px 24px; border-radius: 22px; }
+  .line-cta__lead { font-size: 1.8rem; margin-bottom: 14px; }
+  .line-cta .line-btn { max-width: 380px; }
+}

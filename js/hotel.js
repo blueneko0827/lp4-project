@@ -295,7 +295,9 @@
     // ポップアップ
     $$('[data-close]', $('#popup')).forEach(function (el) { el.addEventListener('click', function (e) { e.preventDefault(); closePopup(); }); });
     $('#popupCover').addEventListener('click', closePopup);
-    $('#popupLine').addEventListener('click', function () { push({ event: 'hotel_lp_line_click' }); });
+    $$('.js-line').forEach(function (a) {
+      a.addEventListener('click', function () { push({ event: 'hotel_lp_line_click', place: a.getAttribute('data-place') || '' }); });
+    });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePopup(); });
     setTimeout(openPopup, CONFIG.popupDelayMs);
     document.addEventListener('mouseout', function (e) {
