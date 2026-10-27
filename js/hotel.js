@@ -358,7 +358,11 @@
     if (CONFIG.lineUrl) {
       var pc = $('#popupCta');
       pc.href = CONFIG.lineUrl; pc.target = '_blank'; pc.rel = 'noopener';
-      pc.textContent = 'LINEで気軽に相談する';
+      pc.innerHTML = '<svg class="cta__line-icon" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="11" fill="#fff"/>'
+        + '<path fill="#06c755" d="M24 10c-8.8 0-16 5.8-16 13 0 6.4 5.7 11.8 13.4 12.8.5.1 1.2.3 1.4.8.2.4.1 1 .1 1.4l-.2 1.4c-.1.4-.3 1.6 1.4.9 1.7-.7 9.3-5.5 12.7-9.4C39.3 28.3 40 25.8 40 23c0-7.2-7.2-13-16-13z"/>'
+        + '<path fill="#fff" d="M17.3 26.8h-3.1c-.4 0-.8-.4-.8-.8v-6.2c0-.4.4-.8.8-.8s.8.4.8.8v5.4h2.3c.4 0 .8.4.8.8s-.4.8-.8.8zm3.2-.8c0 .4-.4.8-.8.8s-.8-.4-.8-.8v-6.2c0-.4.4-.8.8-.8s.8.4.8.8V26zm7.5 0c0 .3-.2.6-.5.7h-.3c-.2 0-.5-.1-.6-.3l-3.2-4.3V26c0 .4-.4.8-.8.8s-.8-.4-.8-.8v-6.2c0-.3.2-.6.5-.7h.3c.2 0 .5.1.6.3l3.2 4.3v-3.9c0-.4.4-.8.8-.8s.8.4.8.8V26zm5-3.9c.4 0 .8.4.8.8s-.4.8-.8.8h-2.3v1.5h2.3c.4 0 .8.4.8.8s-.4.8-.8.8h-3.1c-.4 0-.8-.4-.8-.8v-6.2c0-.4.4-.8.8-.8h3.1c.4 0 .8.4.8.8s-.4.8-.8.8h-2.3v1.5h2.3z"/></svg>'
+        + 'LINEで気軽に相談する';
+      $('#popup').classList.add('popup--line');
       pc.classList.remove('js-to-form');
       pc.addEventListener('click', function () { push({ event: 'hotel_lp_line_click' }); });
     } else {

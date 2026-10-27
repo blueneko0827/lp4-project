@@ -225,6 +225,13 @@ button, input, select { font: inherit; color: inherit; }
 .popup__list li { padding-left: 22px; position: relative; }
 .popup__list li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
 .popup__later { margin-top: 8px; background: none; border: 0; color: var(--muted); text-decoration: underline; font-size: 13px; padding: 8px; cursor: pointer; }
+/* LINE相談モード（CONFIG.lineUrl 設定時）：LINEのブランドカラー */
+.popup--line { --line-green: #06c755; --line-green-dark: #04a144; }
+.popup--line .popup__eyebrow { color: var(--line-green-dark); }
+.popup--line .popup__list li::before { color: var(--line-green); }
+.popup--line .cta { flex-direction: row; gap: 0; background: var(--line-green); box-shadow: 0 4px 0 var(--line-green-dark); }
+.popup--line .cta:active { box-shadow: 0 1px 0 var(--line-green-dark); }
+.cta__line-icon { display: inline-block; width: 26px; height: 26px; margin-right: 8px; vertical-align: -6px; }
 
 /* ===== thanks ===== */
 .thanks { padding: 48px 0 64px; text-align: center; }
