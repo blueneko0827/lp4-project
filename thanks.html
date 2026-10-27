@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google Tag Manager（index.html と同じIDに設定。コンバージョンはこのページの表示で計測） -->
+  <script>
+    (function (w, d, s, l, i) {
+      if (/X{4,}/.test(i)) return;
+      w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PTF8NCDS');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ご登録ありがとうございます｜パラブルエージェント ホテル・宿泊</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/hotel.css?v=20261027b">
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTF8NCDS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <p class="logo">
+        <!-- ロゴ画像がある場合は img/logo.png を置くと自動で差し替わります（無ければ文字ロゴ） -->
+        <img src="./img/logo.png" alt="パラブルエージェント ホテル・宿泊" class="logo__img" onerror="this.remove()">
+        <span class="logo__mark" aria-hidden="true">PA</span>
+        <span class="logo__text">パラブルエージェント<small>ホテル・宿泊</small></span>
+      </p>
+    </div>
+  </header>
+
+  <main class="thanks">
+    <div class="wrap wrap--narrow">
+      <div class="thanks__icon" aria-hidden="true">✓</div>
+      <h1>ご登録ありがとうございます</h1>
+      <p>ご入力いただいた内容を確認のうえ、<br>担当者よりご連絡いたします。</p>
+      <ol class="flow__list">
+        <li><b>NEXT 1</b><span>ご希望のヒアリング</span><small>ご登録の電話番号へご連絡します</small></li>
+        <li><b>NEXT 2</b><span>求人のご紹介</span><small>ご希望に合う求人をご提案</small></li>
+        <li><b>NEXT 3</b><span>応募・面接</span><small>日程調整・面接対策もお任せ</small></li>
+      </ol>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="site-footer__nav">
+        <a href="./privacy.html" target="_blank" rel="noopener">個人情報保護</a>
+        <a href="./terms.html" target="_blank" rel="noopener">利用規約</a>
+        <a href="https://parable.co.jp/" target="_blank" rel="noopener">運営会社</a>
+      </nav>
+      <p class="site-footer__copy">Copyright © parable Inc. All Rights Reserved.</p>
+    </div>
+  </footer>
+  <script>
+    // コンバージョン用イベント：フォームから実際に送信した場合のみ1回だけ送る
+    // （直接アクセス・再読み込みでは送らない。?test=1 から送信した場合は hotel_lp_thanks_test）
+    (function () {
+      var ss = null;
+      try { ss = window.sessionStorage; } catch (e) {}
+      var submitted = ss && ss.getItem('pa_hotel_submitted') === '1';
+      var isTest = ss && ss.getItem('pa_hotel_test') === '1';
+      if (!submitted) return;
+      try { ss.removeItem('pa_hotel_submitted'); } catch (e) {}
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: isTest ? 'hotel_lp_thanks_test' : 'hotel_lp_thanks', lp_test: !!isTest });
+    })();
+  </script>
+</body>
+</html>
