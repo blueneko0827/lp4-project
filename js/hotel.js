@@ -124,6 +124,7 @@
     el.textContent = v.length ? '選択中：' + v.join('・') : 'エリアを開いて都道府県を選んでください';
     el.classList.toggle('is-set', v.length > 0);
     $$('.region-card').forEach(function (d) { var n = $$('input:checked', d).length; $('[data-count]', d).textContent = n ? n : ''; });
+    $('#prefAny').parentNode.classList.toggle('is-on', $('#prefAny').checked);
   }
 
   /* ===== ステップ ================================================= */
@@ -215,7 +216,18 @@
     form.addEventListener('input', function () { started = true; refreshButtons(); });
     form.addEventListener('change', function (e) {
       started = true;
-      if (e.target.name === F.pref) updatePrefSummary();
+      if (e.target.name === F.pref) {
+        // 「全国どこでも可」と都道府県はどちらか一方
+        if (e.target.checked) {
+          if (e.target.id === 'prefAny') {
+            $$('.region-card input:checked').forEach(function (i) { i.checked = false; });
+            $$('.region-card[open]').forEach(function (d) { d.open = false; });
+          } else {
+            $('#prefAny').checked = false;
+          }
+        }
+        updatePrefSummary();
+      }
       refreshButtons();
       // 1つ選ぶだけの質問（雇用形態・時期）は自動で次へ（lp4 と同じ）
       if (e.target.type === 'radio' && (current === 2 || current === 3) && valid(current)) {

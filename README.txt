@@ -1,27 +1,33 @@
 パラブルエージェント ホテル・宿泊 LP
 =====================================
-デザインは看護LP4（kango.tensyoku-garden.com/lp4/）と同じ構成・スタイルです。
-css/reset.css・style_mini.css・lp4.css は LP4 のものをそのまま使用し、ホテル用の追加分だけを css/hotel.css に記載しています。
+写真メインの落ち着いたデザイン（ネイビー × ゴールド）。フォーム部分の構成・動きは看護LP4と同じです。
+css/reset.css・style_mini.css・lp4.css は LP4 のものをそのまま使用し、ホテル用の追加分を css/hotel.css、
+色・写真セクション（FV／3つの強み／ご利用の流れ）を css/hotel-premium.css に記載しています。
+見出しの書体は Google Fonts の「しっぽり明朝」を読み込んでいます。
 
 ■ ファイル構成
   index.html      LP本体（最初の質問＋7画面のステップ式フォーム）
   thanks.html     送信完了ページ（Web-to-Lead の retURL）
   privacy.html    個人情報保護方針（クライアント支給の原稿）
   terms.html      利用規約（クライアント支給の原稿）
-  css/            reset.css / style_mini.css / lp4.css（LP4と同じ）＋ hotel.css（ホテル用の追加）
+  css/            reset.css / style_mini.css / lp4.css（LP4と同じ）＋ hotel.css ＋ hotel-premium.css
   js/hotel.js     フォーム制御・gclid/UTM保持・ポップアップ（jQuery不要）
-  img/            ロゴ・アドバイザー・木のイラスト等（img/README_images.txt 参照）
+  img/            写真（FV・3つの強み）・ロゴ・アドバイザー等（img/README_images.txt 参照）
 
 ■ 設置先
   さくらのレンタルサーバ：ドメイン新規追加で hotel.parableagent.com（公開フォルダ ~/www/hotel）
   → SSL（無料SSL）を有効化 → 上記ファイルを ~/www/hotel にアップロード
+
+■ ページ構成
+  FV（写真・キャッチコピー・POINT1〜3）→ 登録フォーム → パラブルエージェントの3つの強み（写真）
+  → ご利用の流れ（申込ボタン・LINE相談）→ フッター
 
 ■ フォームの流れ
   最初の質問  あなたのお気持ちは？（近いうちに転職したい／今は情報収集したい）→ 00NQ900000dKio1（LP4と同じ値）
   STEP1 希望職種（最大3つ）     00NQ900000hT8Sr（複数選択）
   STEP2 雇用形態               00NBL000000OLIm（選ぶと自動で次へ）
   STEP3 就業時期               00NBL000000OLJ1（LP3・LP4と同じ項目・同じ値。選ぶと自動で次へ）
-  STEP4 希望勤務地＋転居可否    00NQ900000hT90j（複数選択）／ 00NQ900000hT70X
+  STEP4 希望勤務地＋転居可否    00NQ900000hT90j（複数選択。「全国どこでも可」を選ぶと都道府県の選択は外れます）／ 00NQ900000hT70X
   STEP5 住所                   zip / state / city（郵便番号から自動入力）
   STEP6 お名前・生まれ年        last_name / first_name / 00NQ9000003vidi（＋ 00N2x000008eoLl にも転記：LP4と同じ）
   STEP7 電話・メール（任意）    mobile / email
@@ -42,10 +48,8 @@ css/reset.css・style_mini.css・lp4.css は LP4 のものをそのまま使用�
   1. Salesforce：雇用形態（00NBL000000OLIm）に「正社員・契約社員・アルバイト・パート・こだわらない」を追加
      （値・レコードタイプの選択肢にも追加。綴りが違うとリードが作成されません）
      ※「就業時期」「お仕事のご状況」はLP3・LP4と同じ値を使うため、追加は不要です
-  2. 写真（任意。無くても表示は崩れません）
-       img/fv-hotel.png    FVの人物写真（背景透過、横700×縦1000px程度）→ 無い場合はベルのイラスト
-       img/proof-hotel.jpg 「理想の働き方を実現」の写真（横1280×縦1024px程度）→ 無い場合は非表示
-  3. 原稿（FV・選ばれる理由など）のクライアント確認
+  2. Salesforce：希望勤務地（00NQ900000hT90j）に「全国どこでも可」を追加
+  3. デザイン・原稿（3つの強み・ご利用の流れ）のクライアント確認
 
 ■ GTM の設定（コンテナ GTM-PTF8NCDS）
   1. Google タグ：タグID AW-633044713 ／ トリガー「Initialization - All Pages」
