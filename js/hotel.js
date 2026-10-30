@@ -3,14 +3,16 @@
  * - 最初の質問（あなたのお気持ちは…）の回答は「お仕事のご状況」00NQ900000dKio1 に送信（lp4 と同じ値）
  * - gclid / gbraid / wbraid / UTM を保持して送信（lp4 と同じ項目ID）
  * - ?test=1 で開くとテスト送信扱い（コンバージョン計測しない・utm_source=test）
- * - 離脱防止ポップアップ（LINE相談）は時間経過・PCのカーソル離脱で1回のみ（ブラウザの「戻る」は妨げない）
+ * - 離脱防止ポップアップ（LINE相談）は「操作が45秒止まった時」か「PCでカーソルが画面上端から外れた時」に1回のみ
+ *   （最初の質問の回答前・フォーム入力開始後・送信後は表示しない。ブラウザの「戻る」は妨げない）
  */
 (function () {
   'use strict';
 
   /* ===== 設定 ===================================================== */
   var CONFIG = {
-    popupDelayMs: 30000,          // 何ミリ秒後にポップアップを表示するか
+    popupIdleMs: 45000,           // 最初の質問に答えた後、操作が無いまま何ミリ秒経ったらポップアップを表示するか
+    exitMinMs: 20000,             // PCで画面上端からカーソルが外れた時、表示を許可するまでの最低滞在時間
     trackingTtlDays: 90,          // 広告パラメータの保持期間
     testParam: 'test',
     maxJobs: 3,
@@ -182,6 +184,12 @@
     $('#popupCover').hidden = false;
     push({ event: 'hotel_lp_popup_show' });
   }
+  var idleTimer = null, step0At = 0;
+  function armPopup() {
+    if (!step0At || !popupAllowed()) return;
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(openPopup, CONFIG.popupIdleMs);
+  }
   function closePopup() {
     $('#popup').classList.remove('is-open');
     $('#popupCover').hidden = true;
@@ -203,6 +211,7 @@
       step0.hidden = true;
       document.documentElement.className = document.documentElement.className.replace(/\s*step0-open/, '');
       push({ event: 'hotel_lp_step0', answer: $('#step0_value').value });
+      step0At = Date.now(); armPopup();
     });
 
     // 職種：最大3つ
@@ -311,8 +320,12 @@
       a.addEventListener('click', function () { push({ event: 'hotel_lp_line_click', place: a.getAttribute('data-place') || '' }); });
     });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePopup(); });
-    setTimeout(openPopup, CONFIG.popupDelayMs);
+    // 操作（スクロール・タップ・クリック・キー入力）のたびにタイマーをリセットし、操作の邪魔をしない
+    ['scroll', 'touchstart', 'click', 'keydown'].forEach(function (ev) {
+      window.addEventListener(ev, armPopup, { passive: true });
+    });
     document.addEventListener('mouseout', function (e) {
+      if (!step0At || Date.now() - step0At < CONFIG.exitMinMs) return;
       if (!e.relatedTarget && e.clientY <= 0 && window.matchMedia('(pointer:fine)').matches) openPopup();
     });
 
