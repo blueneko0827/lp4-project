@@ -32,6 +32,10 @@ css/reset.css・style_mini.css・lp4.css は LP4 のものをそのまま使用�
   STEP4 希望勤務地＋転居可否    00NQ900000hT90j（複数選択。「全国どこでも可」を選ぶと都道府県の選択は外れます）／ 00NQ900000hT70X
   STEP5 住所                   zip / state / city（郵便番号から自動入力）
   STEP6 お名前・生まれ年        last_name / first_name / 00NQ9000003vidi（＋ 00N2x000008eoLl にも転記：LP4と同じ）
+        外国籍の方へ（任意）     在留資格 RESIDENCE_STATUS_FIELD_ID（※Salesforceに項目作成後、項目IDに差し替え）
+        値：永住者・定住者・特別永住者／日本人・永住者の配偶者等／技術・人文知識・国際業務／特定技能（宿泊）／特定技能（外食）／
+            その他の就労資格／留学／特定活動／ワーキングホリデー／その他／在留資格未取得／わからない（未回答は空欄）
+        Google広告への自動送信は「未回答」または「永住者・定住者・特別永住者」「日本人・永住者の配偶者等」の登録のみ
   STEP7 電話・メール（任意）    mobile / email
   固定値  oid 00D2x0000075l4j ／ recordType 0122x000000he0w ／ LP名 00NBL000000OKpf = HOTEL-LP1
   広告    gclid 00NQ900000bVnf3 / gbraid 00NQ900000bY0jR / wbraid 00NQ900000bY14P

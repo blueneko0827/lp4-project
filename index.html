@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./css/reset.css?v=20261030a">
     <link rel="stylesheet" href="./css/style_mini.css?v=20261030a">
     <link rel="stylesheet" href="./css/lp4.css?v=20261030a">
-    <link rel="stylesheet" href="./css/hotel.css?v=20261030a">
+    <link rel="stylesheet" href="./css/hotel.css?v=20261118a">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&display=swap">
@@ -351,6 +351,27 @@
                                         <select class="birthday-years" id="birthYear" name="00NQ9000003vidi" autocomplete="bday-year">
                                             <option value="" class="select-first">選択してください</option>
                                         </select><span class="birthday-text">年</span>
+                                        <!-- 外国籍の方へ（任意）：Salesforce「在留資格」へ保存。name は項目作成後の項目IDに差し替え -->
+                                        <div class="foreign-box">
+                                            <p class="form-title foreign-box__title">● 外国籍の方へ<span class="form-optional">任意</span><span class="foreign-box__en" lang="en">For International Applicants</span></p>
+                                            <p class="foreign-box__note">日本国籍の方は回答不要です。<br><span lang="en">Japanese nationals do not need to answer.</span></p>
+                                            <label class="foreign-box__label" for="residenceStatus">現在の在留資格 / <span lang="en">Residence status</span></label>
+                                            <select class="form-residence" id="residenceStatus" name="RESIDENCE_STATUS_FIELD_ID">
+                                                <option value="" class="select-first">選択してください / Please select</option>
+                                                <option value="永住者・定住者・特別永住者">永住者・定住者・特別永住者 / Permanent Resident / Long-Term Resident / Special Permanent Resident</option>
+                                                <option value="日本人・永住者の配偶者等">日本人・永住者の配偶者等 / Spouse or Child of Japanese National / Permanent Resident</option>
+                                                <option value="技術・人文知識・国際業務">技術・人文知識・国際業務 / Engineer / Specialist in Humanities / International Services</option>
+                                                <option value="特定技能（宿泊）">特定技能（宿泊） / Specified Skilled Worker / Accommodation</option>
+                                                <option value="特定技能（外食）">特定技能（外食） / Specified Skilled Worker / Food Service</option>
+                                                <option value="その他の就労資格">その他の就労資格 / Other Work Status</option>
+                                                <option value="留学">留学 / Student</option>
+                                                <option value="特定活動">特定活動 / Designated Activities</option>
+                                                <option value="ワーキングホリデー">ワーキングホリデー / Working Holiday</option>
+                                                <option value="その他">その他 / Other</option>
+                                                <option value="在留資格未取得">在留資格未取得 / No Residence Status Yet</option>
+                                                <option value="わからない">わからない / Not Sure</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 <div class="advice step5__advice">
                                     <div class="advice__img"><img src="./img/advice.gif" alt="アドバイザー" width="117" height="124"></div>
